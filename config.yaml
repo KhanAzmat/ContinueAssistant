@@ -1,4 +1,4 @@
-name: Assistant V1
+name: Local Assistant
 version: 1.0.0
 schema: v1
 models:
@@ -23,7 +23,11 @@ models:
     apiBase: http://192.168.61.47:8002
     roles: [embed]
 
-
+  - name: Reranker Base
+    provider: huggingface-tei
+    model: Alibaba-NLP/gte-reranker-modernbert-base
+    apiBase: http://192.168.61.47:8001
+    roles: [rerank]
 
 context:
   - provider: code
@@ -32,4 +36,9 @@ context:
   - provider: terminal
   - provider: problems
   - provider: folder
+    params: 
+      useReranking: true
   - provider: codebase
+    params:
+      useReranking: true
+      nFinal: 10
