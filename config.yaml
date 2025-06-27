@@ -1,0 +1,35 @@
+name: Assistant V1
+version: 1.0.0
+schema: v1
+models:
+
+  - name: DeepSeek R1 Distil Qwen 32B
+    provider: vllm
+    model: deepseek-ai/DeepSeek-R1-Distill-Qwen-32B
+    apiBase: http://192.168.61.47:8000/v1
+    roles:
+      - chat
+      - edit
+      - apply
+      - autocomplete
+    defaultCompletionOptions:
+        temperature: 0.6
+    prompts: ["<think> Please reason step by step, and put your final answer within \boxed{}"]
+    rules: []
+
+  - name: Jina Embeddings V2 Code
+    provider: huggingface-tei
+    model: jinaai/jina-embeddings-v2-base-code
+    apiBase: http://192.168.61.47:8002
+    roles: [embed]
+
+
+
+context:
+  - provider: code
+  - provider: docs
+  - provider: diff
+  - provider: terminal
+  - provider: problems
+  - provider: folder
+  - provider: codebase
