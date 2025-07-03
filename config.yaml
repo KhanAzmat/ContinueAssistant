@@ -15,6 +15,9 @@ models:
     defaultCompletionOptions:
         temperature: 0.6
         contextLength: 130000
+    requestOptions:
+      extraBodyProperties:
+        truncate_prompt_tokens: 28672
     prompts: ["<think> Please reason step by step, and put your final answer within \boxed{}"]
     rules: []
 
